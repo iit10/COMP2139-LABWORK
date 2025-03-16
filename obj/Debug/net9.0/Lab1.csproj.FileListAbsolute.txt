@@ -689,3 +689,4 @@ C:\Users\owner\RiderProjects\Lab1\obj\Debug\net9.0\refint\Lab1.dll
 C:\Users\owner\RiderProjects\Lab1\obj\Debug\net9.0\Lab1.pdb
 C:\Users\owner\RiderProjects\Lab1\obj\Debug\net9.0\Lab1.genruntimeconfig.cache
 C:\Users\owner\RiderProjects\Lab1\obj\Debug\net9.0\ref\Lab1.dll
+C:\Users\owner\RiderProjects\Lab1\obj\Debug\net9.0\Lab1.sourcelink.json
