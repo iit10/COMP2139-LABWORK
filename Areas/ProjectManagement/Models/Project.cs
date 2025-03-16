@@ -25,14 +25,14 @@ public class Project
     
     [Display(Name = "Project Start Date")]
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-    public DateTime StartDate { get; set; }
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+    public DateTime StartDate { get; set; } = DateTime.UtcNow;
     
     
     [Display(Name = "Project End Date")]
-    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
     [DataType(DataType.Date)]
-    public DateTime EndDate { get; set; }
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+    public DateTime EndDate { get; set; } = DateTime.UtcNow;
     
     [Display(Name = "Project Status")]
     public string? Status { get; set; }

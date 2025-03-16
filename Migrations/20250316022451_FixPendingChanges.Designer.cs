@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Lab1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250213190540_AddProjectTasks")]
-    partial class AddProjectTasks
+    [Migration("20250316022451_FixPendingChanges")]
+    partial class FixPendingChanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Lab1.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Lab1.Models.Project", b =>
+            modelBuilder.Entity("Lab1.Areas.ProjectManagement.Models.Project", b =>
                 {
                     b.Property<int>("ProjectId")
                         .ValueGeneratedOnAdd()
@@ -34,14 +34,16 @@ namespace Lab1.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ProjectId"));
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("timestamp with time zone");
@@ -57,22 +59,22 @@ namespace Lab1.Migrations
                         new
                         {
                             ProjectId = 1,
-                            Description = "Project 5 description",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Project 5",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Description = "COMP2139 - Assignment 1",
+                            EndDate = new DateTime(2025, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Assignment 1",
+                            StartDate = new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             ProjectId = 2,
-                            Description = "Project 6 description",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Project 6",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Description = "COMP2139 - Assignment 2",
+                            EndDate = new DateTime(2025, 3, 30, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Assignment 2",
+                            StartDate = new DateTime(2025, 3, 16, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
-            modelBuilder.Entity("Lab1.Models.ProjectTask", b =>
+            modelBuilder.Entity("Lab1.Areas.ProjectManagement.Models.ProjectTask", b =>
                 {
                     b.Property<int>("ProjectTaskId")
                         .ValueGeneratedOnAdd()
@@ -82,14 +84,16 @@ namespace Lab1.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.HasKey("ProjectTaskId");
 
@@ -98,9 +102,9 @@ namespace Lab1.Migrations
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("Lab1.Models.ProjectTask", b =>
+            modelBuilder.Entity("Lab1.Areas.ProjectManagement.Models.ProjectTask", b =>
                 {
-                    b.HasOne("Lab1.Models.Project", "Project")
+                    b.HasOne("Lab1.Areas.ProjectManagement.Models.Project", "Project")
                         .WithMany("Tasks")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -109,7 +113,7 @@ namespace Lab1.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("Lab1.Models.Project", b =>
+            modelBuilder.Entity("Lab1.Areas.ProjectManagement.Models.Project", b =>
                 {
                     b.Navigation("Tasks");
                 });
