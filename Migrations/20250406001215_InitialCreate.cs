@@ -20,8 +20,8 @@ namespace Lab1.Migrations
                 {
                     ProjectId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
                     StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Status = table.Column<string>(type: "text", nullable: true)
@@ -37,8 +37,8 @@ namespace Lab1.Migrations
                 {
                     ProjectTaskId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Title = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Title = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     ProjectId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -57,8 +57,8 @@ namespace Lab1.Migrations
                 columns: new[] { "ProjectId", "Description", "EndDate", "Name", "StartDate", "Status" },
                 values: new object[,]
                 {
-                    { 1, "Project 5 description", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Project 5", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 2, "Project 6 description", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Project 6", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
+                    { 1, "COMP2139 - Assignment 1", new DateTime(2025, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc), "Assignment 1", new DateTime(2025, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 2, "COMP2139 - Assignment 2", new DateTime(2025, 3, 30, 0, 0, 0, 0, DateTimeKind.Utc), "Assignment 2", new DateTime(2025, 3, 16, 0, 0, 0, 0, DateTimeKind.Utc), null }
                 });
 
             migrationBuilder.CreateIndex(
